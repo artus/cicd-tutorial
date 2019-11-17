@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "The CloudFormation template for the CICD tutorial stack."
+Resources:
+  CICDAutoScalingLaunchConfiguration:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      LaunchConfigurationName: "cicd-backend-autoscaling-launch-configuration"
+      InstanceType: "t3.nano" 
+      ImageId: "ami-047bb4163c506cd98" # https://aws.amazon.com/amazon-linux-ami/
+  CICDAutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: "cicd-backend-autoscaling-group"
+      LaunchConfigurationName: !Ref CICDAutoScalingLaunchConfiguration
+      AvailabilityZones: 
+        Fn::GetAZs: ""
+      DesiredCapacity: "1"
+      MinSize: "1"
+      MaxSize: "1"
+      Tags:
+        - Key: Project
+          Value: CICD 
+          PropagateAtLaunch: 'true'

@@ -1,4 +1,11 @@
+git:
+  depth: 1
+
 language: java
+
+jdk:
+  - oraclejdk8
+  - openjdk8
 
 cache:
   directories:
