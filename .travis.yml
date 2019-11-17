@@ -1,6 +1,9 @@
 git:
   depth: 1
 
+dist: 
+  trusty
+
 language: java
 
 jdk:
